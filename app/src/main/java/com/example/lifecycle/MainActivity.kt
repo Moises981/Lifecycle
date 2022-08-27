@@ -1,18 +1,25 @@
 package com.example.lifecycle
 
+import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.lifecycle.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var binding: ActivityMainBinding
     private var position: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.btnCheck.setOnClickListener {
+            startActivity(Intent(this, DialogActivity::class.java))
+        }
         Log.i("Lifecycle", "OnCreate")
     }
 
